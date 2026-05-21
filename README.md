@@ -9,7 +9,7 @@ A deep learning project that classifies chest X-ray images as **Normal** or **Pn
 ### Attempt 1: Baseline Model (Overfitting & Instability)
 > Trained for 40 epochs without data augmentation. The model memorized the training data instead of learning general patterns — a classic overfitting problem.
 
-![Baseline Loss Graph](graphs/loss_val2.png)
+![Baseline Loss Graph](loss_val2.png)
 
 **Problems observed:**
 - Validation Loss stuck at ~0.40 (model was twice as wrong)
