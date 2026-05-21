@@ -91,10 +91,11 @@ Applied `RandomHorizontalFlip` and `RandomResizedCrop` to the training set to ar
 ```python
 train_transform = transforms.Compose([
     transforms.Resize((224, 224)),
+    transforms.RandomRotation(10),      # Rotate slightly
+    transforms.RandomResizedCrop(224, scale=(0.8, 1.0)), # Zoom in/out
     transforms.RandomHorizontalFlip(),
     transforms.ToTensor(),
-    transforms.Normalize(mean=[0.485, 0.456, 0.406],
-                         std=[0.229, 0.224, 0.225])
+    transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
 ])
 ```
 
@@ -110,7 +111,7 @@ train_transform = transforms.Compose([
 ### Option 1: Google Colab (Recommended — Free GPU)
 
 1. Upload `archive.zip` to your Google Drive.
-2. Open `pneumonia_colab.py` in Google Colab.
+2. Open `Pneumonia_classification_mobilenetV2_new.ipynb` in Google Colab.
 3. Go to **Runtime > Change runtime type > T4 GPU**.
 4. Run all cells.
 
