@@ -124,31 +124,6 @@ pip install torch torchvision matplotlib
 # Run training
 python pneumonia_colab.py
 ```
-
----
-
-## Project Structure
-
-```
-Pneumonia_MobilenetV2/
-├── pneumonia_colab.py          # Main training script (Colab-ready)
-├── graphs/
-│   ├── baseline_40epoch.png    # Attempt 1: overfitting graph
-│   └── optimized_15epoch.png   # Attempt 2: final optimized graph
-├── mobilenetv2_pneumonia.pth   # Saved trained model weights
-└── README.md
-```
-
----
-
-## What I Learned
-
-- How **Convolutional Neural Networks** extract features from images layer by layer.
-- The concept of **Transfer Learning** and why it drastically reduces training time.
-- How to diagnose **overfitting** by comparing Training vs Validation Loss curves.
-- The difference between **Training, Validation, and Test sets** and when to use each.
-- How **backpropagation** and the **Adam optimizer** update model weights batch by batch.
-
 ---
 
 ## Dependencies
@@ -158,3 +133,12 @@ torch
 torchvision
 matplotlib
 ```
+
+## License
+
+This project is distributed under the MIT License. See `LICENSE` for more information.
+
+## Contact
+
+Manolina Das - [GitHub Profile](https://github.com/manolina-13)
+Email - manolinadas2004@gmail.com
