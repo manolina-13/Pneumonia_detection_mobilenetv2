@@ -21,7 +21,7 @@ A deep learning project that classifies chest X-ray images as **Normal** or **Pn
 ### Attempt 2: Optimized Model (Data Augmentation + Fine-Tuning)
 > After diagnosing the problem, I applied Data Augmentation and reduced epochs. The model converged faster and generalized much better.
 
-![Optimized Loss Graph](graphs/loss_val3.png)
+![Optimized Loss Graph](loss_val3.png)
 
 **Improvements achieved:**
 - Validation Loss reduced to ~0.16 (highly accurate)
