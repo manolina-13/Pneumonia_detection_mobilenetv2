@@ -1,0 +1,18 @@
+# Ignore the massive dataset
+archive/
+archive.zip
+chest_xray/
+__MACOSX/
+
+# Ignore Python caches
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore virtual environments
+venv/
+env/
+.env
+
+# Ignore temporary Jupyter/Colab files
+.ipynb_checkpoints/

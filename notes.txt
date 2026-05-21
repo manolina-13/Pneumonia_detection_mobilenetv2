@@ -1,0 +1,38 @@
+# Freeze all the base layers of MobileNetV2
+for param in model.features.parameters():
+    param.requires_grad = False
+
+
+
+    Yes, exactly!
+
+Here is the breakdown of what happened and why you are completely right:
+
+**1. You were training the entire MobileNetV2 earlier**
+Even though you loaded the pretrained weights (`weights=models.MobileNet_V2_Weights.DEFAULT`), you passed `model.parameters()` to your optimizer without freezing anything. This told PyTorch to update **all 3.4 million parameters** of MobileNetV2 during training. 
+
+**2. A small dataset definitely leads to overfitting**
+Neural networks are basically giant math equations with millions of variables. If you give a model with 3.4 million parameters only a few thousand images (and a large learning rate), it has so much "brain power" that it doesn't bother learning general rules about what pneumonia looks like. Instead, it just **memorizes** the exact pixels of the training images. That's why your training loss went to 0, but it failed completely on validation images.
+
+**3. What you should do now**
+You should still load the pretrained model, but you need to **freeze** its "brain" (the feature extractor) so it doesn't unlearn all the complex shapes, edges, and textures it learned from ImageNet. 
+
+You only want to train the brand new 2-class classification layer you added at the very end. Once you freeze the base model, the optimizer will only have to learn a few thousand parameters instead of 3.4 million, making it much harder to overfit on your dataset and much faster to train!
+
+
+
+Yes, exactly! 
+
+When you freeze the base model, **only the final classification layer** (the `nn.Linear(num_features, 2)` layer you just added) will be trained. 
+
+Here is how to think about it:
+
+1. **The Frozen Layers (The Feature Extractor):**
+   The millions of parameters in MobileNetV2's base layers are completely locked. They already know how to identify edges, textures, shapes, and complex patterns from the millions of images they were trained on (ImageNet). We are just passing our X-ray images through them to extract these basic visual features.
+
+2. **The 1 Trainable Layer (The Decision Maker):**
+   The only part of the math that changes is that final layer. Its entire job is simply to look at the features extracted by the frozen layers and learn a simple rule: *"When I see these specific cloudy textures from the feature extractor, I should output Pneumonia. When it's clear, I output Normal."*
+
+**Why this is amazing for you:**
+* **No more overfitting:** You are now only training about 2,500 parameters instead of 3.4 million. It's almost impossible for the model to memorize the dataset with so few parameters.
+* **Super fast training:** Because PyTorch doesn't have to calculate gradients through all the deep layers of the network, your training will be significantly faster per epoch. 5x to 10x faster per epoch!00be much faster, and it requires significantly less GPU memory is required.
